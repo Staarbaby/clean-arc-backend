@@ -14,7 +14,7 @@ public class UpdateAuthorUseCase extends UseCase<UpdateAuthorUseCase.InputValues
     protected final AuthorRepository authorRepository;
 
     public SingletonEntityOutputValues<AuthorEntity> execute(InputValues inputValues){
-        AuthorEntity authorEntity = authorRepository.findById(inputValues.id).orElse(AuthorNotFoundException::new);
+        AuthorEntity authorEntity = authorRepository.findById(inputValues.id).orElseThrow(AuthorNotFoundException::new);
         authorEntity.setFirstName(inputValues.getFirstName());
         authorEntity.setLastName(inputValues.getLastName());
         authorEntity.setUpdatedAt(Instant.now());
