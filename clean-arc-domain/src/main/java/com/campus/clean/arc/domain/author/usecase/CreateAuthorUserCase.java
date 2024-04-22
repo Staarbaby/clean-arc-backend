@@ -7,8 +7,8 @@ import com.campus.clean.arc.domain.author.port.AuthorRepository;
 import com.rcore.domain.commons.usecase.UseCase;
 import com.rcore.domain.commons.usecase.model.SingletonEntityOutputValues;
 import lombok.*;
-import org.springframework.context.expression.CachedExpressionEvaluator;
 import ru.foodtechlab.lib.auth.integration.core.credential.CredentialServiceFacade;
+import ru.foodtechlab.lib.auth.integration.core.credential.exception.CredentialNotFoundException;
 import ru.foodtechlab.lib.auth.integration.core.role.RoleServiceFacade;
 import ru.foodtechlab.lib.auth.integration.core.roleAccess.RoleAccessServiceFacade;
 import ru.foodtechlab.lib.auth.service.facade.credential.dto.requests.CreateCredentialRequest;
@@ -19,7 +19,7 @@ import ru.foodtechlab.lib.auth.service.facade.roleAccess.dto.requests.CreateRole
 import ru.foodtechlab.lib.auth.service.facade.roleAccess.dto.requests.FindRoleAccessWithFiltersRequest;
 import ru.foodtechlab.lib.auth.service.facade.roleAccess.dto.responses.RoleAccessResponse;
 
-import javax.security.auth.login.CredentialNotFoundException;
+
 import java.time.Instant;
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class CreateAuthorUserCase extends UseCase<CreateAuthorUserCase.InputValu
             roleResponse = roleServiceFacade.findByCode(roleCode).orElse(null);
         } catch (Exception ignore){}
         if (roleResponse == null){
-        FindRoleAccessWithFiltersRequest req = FindRoleAccessWithFiltersRequest.builder().limit(1000l).build();
+        FindRoleAccessWithFiltersRequest req = FindRoleAccessWithFiltersRequest.builder().limit(1000L).build();
         List<RoleAccessResponse> accessResponses = roleAccessServiceFacade.find(req).getItems();
         RoleAccessResponse roleAccessResponse = null;
 

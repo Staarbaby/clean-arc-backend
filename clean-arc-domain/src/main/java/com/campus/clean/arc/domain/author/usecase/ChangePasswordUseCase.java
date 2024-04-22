@@ -17,8 +17,8 @@ import java.time.Instant;
 @RequiredArgsConstructor
 public class ChangePasswordUseCase extends UseCase<ChangePasswordUseCase.InputValues, SingleOutput<Boolean>> {
 
-    private AuthorRepository authorRepository;
-    private CredentialServiceFacade credentialServiceFacade;
+    private final AuthorRepository authorRepository;
+    private final CredentialServiceFacade credentialServiceFacade;
 
     @Override
     public SingleOutput<Boolean> execute(InputValues inputValues) {
@@ -31,6 +31,7 @@ public class ChangePasswordUseCase extends UseCase<ChangePasswordUseCase.InputVa
 
         authorEntity.setUpdatedAt(Instant.now());
         authorRepository.save(authorEntity);
+
         return SingleOutput.of(true);
     }
 
