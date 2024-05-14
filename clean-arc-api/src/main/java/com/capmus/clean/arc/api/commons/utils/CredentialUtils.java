@@ -1,9 +1,11 @@
 package com.capmus.clean.arc.api.commons.utils;
 
 import com.rcore.rest.api.spring.security.TokenAuthentication;
+import lombok.experimental.UtilityClass;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+@UtilityClass
 public class CredentialUtils {
     public String getCredentialId(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
